@@ -1,17 +1,20 @@
 package com.worldmodelers.kafka.messages;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExampleStreamMessage {
-    @JsonProperty
+    @JsonProperty( "id" )
     public String id;
 
-    @JsonProperty
-    public List<String> breadcrumbs;
+    @JsonProperty( "breadcrumbs" )
+    public ArrayList<String> breadcrumbs = new ArrayList<>();
 
-    public ExampleStreamMessage( String idIn, List<String> breadcrumbsIn ) {
+    @JsonCreator
+    public ExampleStreamMessage( @JsonProperty( "id" ) String idIn, @JsonProperty( "breadcrumbs" ) ArrayList<String> breadcrumbsIn ) {
         id = idIn;
         breadcrumbs = breadcrumbsIn;
     }

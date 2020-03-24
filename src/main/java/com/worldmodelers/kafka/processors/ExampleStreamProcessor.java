@@ -28,8 +28,13 @@ public class ExampleStreamProcessor {
     public ExampleStreamProcessor( Properties properties ) {
         properties.forEach( ( key, val ) -> {
             if ( key.toString().startsWith( "kafka" ) ) {
-                kafkaProps.put( key.toString().substring( 5 ), val );
+                kafkaProps.put( key.toString().substring( 6 ), val );
             }
+        } );
+
+        LOG.info("FIXED PROPERTIES!:");
+        kafkaProps.forEach( (k,v) -> {
+            LOG.info(k.toString());
         } );
     }
 
@@ -46,7 +51,7 @@ public class ExampleStreamProcessor {
     private Topology buildStream() {
         StreamsBuilder builder = new StreamsBuilder();
         builder.stream( "stream.in", Consumed.with(stringSerdes, streamMessageSerdes) ).mapValues( (message) -> {
-            List<String> newBreadCrumbs = new ArrayList<String>();
+            ArrayList<String> newBreadCrumbs = new ArrayList<String>();
             newBreadCrumbs.addAll( message.breadcrumbs );
             newBreadCrumbs.add( "scala-kafka-streams" );
             return new ExampleStreamMessage( message.id, newBreadCrumbs );

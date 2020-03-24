@@ -7,6 +7,8 @@ import kafka.server.KafkaConfig$;
 import net.mguenther.kafka.junit.*;
 import org.junit.Rule;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +21,8 @@ import static net.mguenther.kafka.junit.EmbeddedKafkaCluster.provisionWith;
 import static org.junit.Assert.*;
 
 public class ExampleStreamProcessorTest extends ExampleStreamMessageJsonFormat {
+
+    private final Logger LOG = LoggerFactory.getLogger( ExampleStreamProcessor.class );
 
     private EmbeddedKafkaConfig kafkaConfig = EmbeddedKafkaConfig
             .create()
@@ -35,6 +39,10 @@ public class ExampleStreamProcessorTest extends ExampleStreamMessageJsonFormat {
     public ExampleStreamProcessorTest() throws IOException {
         InputStream propStream = getClass().getClassLoader().getResourceAsStream( "test.properties" );
         properties.load( propStream );
+        LOG.info("PROPERTIES!:");
+        properties.forEach( (k,v) -> {
+            LOG.info(k.toString());
+        } );
     }
 
     @Rule

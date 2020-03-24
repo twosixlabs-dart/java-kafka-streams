@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f66c35a8-6337-495b-bf68-c0c67e64c9ac" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/resources/test.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/worldmodelers/kafka/messages/ExampleStreamMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/worldmodelers/kafka/messages/ExampleStreamMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/worldmodelers/kafka/processors/ExampleStreamProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/worldmodelers/kafka/processors/ExampleStreamProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/worldmodelers/kafka/processors/ExampleStreamProcessorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/worldmodelers/kafka/processors/ExampleStreamProcessorTest.java" afterDir="false" />
@@ -102,7 +100,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1585014448361</updated>
-      <workItem from="1585014473302" duration="17344000" />
+      <workItem from="1585014473302" duration="20916000" />
     </task>
     <servers />
   </component>
