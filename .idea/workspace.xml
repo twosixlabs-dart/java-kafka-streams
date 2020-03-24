@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f66c35a8-6337-495b-bf68-c0c67e64c9ac" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/worldmodelers/kafka/processors/ExampleStreamProcessorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/logback-test.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/test.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/worldmodelers/kafka/messages/ExampleStreamMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/worldmodelers/kafka/messages/ExampleStreamMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/worldmodelers/kafka/processors/ExampleStreamProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/worldmodelers/kafka/processors/ExampleStreamProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/worldmodelers/kafka/processors/ExampleStreamProcessorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/worldmodelers/kafka/processors/ExampleStreamProcessorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +59,14 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.worldmodelers.kafka.processors" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+  </component>
   <component name="SbtLocalSettings">
     <option name="projectSyncType">
       <map>
@@ -90,7 +102,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1585014448361</updated>
-      <workItem from="1585014473302" duration="13388000" />
+      <workItem from="1585014473302" duration="17344000" />
     </task>
     <servers />
   </component>
@@ -102,10 +114,10 @@
       <screen x="0" y="23" width="1680" height="958" />
     </state>
     <state x="440" y="171" key="#Project_Structure/0.23.1680.958@0.23.1680.958" timestamp="1585050923118" />
-    <state x="328" y="87" key="SettingsEditor" timestamp="1585050599787">
+    <state x="328" y="87" key="SettingsEditor" timestamp="1585053962162">
       <screen x="0" y="23" width="1680" height="958" />
     </state>
-    <state x="328" y="87" key="SettingsEditor/0.23.1680.958@0.23.1680.958" timestamp="1585050599787" />
+    <state x="328" y="87" key="SettingsEditor/0.23.1680.958@0.23.1680.958" timestamp="1585053962162" />
     <state x="566" y="240" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1585050865991">
       <screen x="0" y="23" width="1680" height="958" />
     </state>

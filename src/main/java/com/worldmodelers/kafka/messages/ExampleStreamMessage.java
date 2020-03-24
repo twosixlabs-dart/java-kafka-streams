@@ -11,7 +11,7 @@ public class ExampleStreamMessage {
     @JsonProperty
     public List<String> breadcrumbs;
 
-    public void ExampleStreamMessage( String idIn, List<String> breadcrumbsIn ) {
+    public ExampleStreamMessage( String idIn, List<String> breadcrumbsIn ) {
         id = idIn;
         breadcrumbs = breadcrumbsIn;
     }

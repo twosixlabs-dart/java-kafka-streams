@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class ExampleStreamProcessor {
@@ -44,7 +46,10 @@ public class ExampleStreamProcessor {
     private Topology buildStream() {
         StreamsBuilder builder = new StreamsBuilder();
         builder.stream( "stream.in", Consumed.with(stringSerdes, streamMessageSerdes) ).mapValues( (message) -> {
-            return message;
+            List<String> newBreadCrumbs = new ArrayList<String>();
+            newBreadCrumbs.addAll( message.breadcrumbs );
+            newBreadCrumbs.add( "scala-kafka-streams" );
+            return new ExampleStreamMessage( message.id, newBreadCrumbs );
         } ).to( "stream.out", Produced.with(stringSerdes, streamMessageSerdes) );
 
         return builder.build( kafkaProps );
