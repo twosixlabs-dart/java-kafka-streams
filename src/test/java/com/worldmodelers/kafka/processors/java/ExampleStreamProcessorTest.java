@@ -1,4 +1,4 @@
-package com.worldmodelers.kafka.processors;
+package com.worldmodelers.kafka.processors.java;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.worldmodelers.kafka.messages.ExampleStreamMessage;
@@ -15,9 +15,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.stream.Stream;
 
-import static net.mguenther.kafka.junit.EmbeddedKafkaCluster.provisionWith;
 import static org.junit.Assert.*;
 
 public class ExampleStreamProcessorTest extends ExampleStreamMessageJsonFormat {
@@ -61,7 +59,7 @@ public class ExampleStreamProcessorTest extends ExampleStreamMessageJsonFormat {
 
         List<KeyValue<String, String>> records = new ArrayList<>();
 
-        records.add( new KeyValue<>( streamMessage.id, streamMessageJson ) );
+        records.add( new KeyValue<>( streamMessage.getId(), streamMessageJson ) );
 
         SendKeyValues<String, String> sendRequest = SendKeyValues.to( inputTopic, records ).useDefaults();
 

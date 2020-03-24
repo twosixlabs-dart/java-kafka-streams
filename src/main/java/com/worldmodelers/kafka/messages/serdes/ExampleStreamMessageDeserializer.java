@@ -1,4 +1,4 @@
-package com.worldmodelers.kafka.messages.serde;
+package com.worldmodelers.kafka.messages.serdes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.worldmodelers.kafka.messages.ExampleStreamMessage;

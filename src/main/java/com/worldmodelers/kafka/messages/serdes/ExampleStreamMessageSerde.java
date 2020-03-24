@@ -1,4 +1,4 @@
-package com.worldmodelers.kafka.messages.serde;
+package com.worldmodelers.kafka.messages.serdes;
 
 import com.worldmodelers.kafka.messages.ExampleStreamMessage;
 import org.apache.kafka.common.serialization.Serdes.WrapperSerde;
