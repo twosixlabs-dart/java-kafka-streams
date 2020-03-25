@@ -19,7 +19,7 @@ import java.util.Properties;
 public class ExampleStreamProcessor {
 
     private final Logger LOG = LoggerFactory.getLogger( ExampleStreamProcessor.class );
-    private Properties kafkaProps = new Properties(  );
+    private Properties kafkaProps = new Properties();
 
     // Constructor retrieves kafka-specific properties from system or application
     // properties prefixed with "kafka." See test.properties in the test resources
@@ -31,9 +31,9 @@ public class ExampleStreamProcessor {
             }
         } );
 
-        LOG.info("FIXED PROPERTIES!:");
-        kafkaProps.forEach( (k,v) -> {
-            LOG.info(k.toString());
+        LOG.info( "FIXED PROPERTIES!:" );
+        kafkaProps.forEach( ( k, v ) -> {
+            LOG.info( k.toString() );
         } );
     }
 
@@ -42,17 +42,17 @@ public class ExampleStreamProcessor {
     // to serialize/deserialize the message itself (in this case the custom ExampleStreamMessageSerde
     // defined in the messages package
     private Serde<String> stringSerdes = Serdes.String();
-    private Serde<ExampleStreamMessage> streamMessageSerdes =new ExampleStreamMessageSerde();
+    private Serde<ExampleStreamMessage> streamMessageSerdes = new ExampleStreamMessageSerde();
 
     // The Topology object, created by StreamsBuilder, defines the flow of messages from
     // an input topic to output topics. The mapValues method is where you define a transformation
     // on the consumed message, and is where you plug in your application's logic.
     private Topology buildStream() {
         StreamsBuilder builder = new StreamsBuilder();
-        builder.stream( "stream.in", Consumed.with(stringSerdes, streamMessageSerdes) ).mapValues( (message) -> {
+        builder.stream( "stream.in", Consumed.with( stringSerdes, streamMessageSerdes ) ).mapValues( ( message ) -> {
             message.getBreadcrumbs().add( "scala-kafka-streams" );
-            return new ExampleStreamMessage( message.getId(), message.getBreadcrumbs() );
-        } ).to( "stream.out", Produced.with(stringSerdes, streamMessageSerdes) );
+            return message;
+        } ).to( "stream.out", Produced.with( stringSerdes, streamMessageSerdes ) );
 
         return builder.build( kafkaProps );
     }
@@ -63,7 +63,7 @@ public class ExampleStreamProcessor {
         Topology topology = buildStream();
         KafkaStreams streams = new KafkaStreams( topology, kafkaProps );
 
-        streams.setUncaughtExceptionHandler( (Thread thread, Throwable throwable) -> {
+        streams.setUncaughtExceptionHandler( ( Thread thread, Throwable throwable ) -> {
             LOG.error( throwable.getMessage() );
         } );
 
