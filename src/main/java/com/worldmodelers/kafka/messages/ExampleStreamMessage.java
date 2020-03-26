@@ -3,11 +3,12 @@ package com.worldmodelers.kafka.messages;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ExampleStreamMessage {
+public class ExampleStreamMessage extends Serializable {
     private static long serialVersionUID = 2L;
 
     @JsonProperty( "id" )
