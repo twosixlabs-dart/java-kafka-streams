@@ -20,27 +20,26 @@ public class ExampleStreamProcessor {
 
     private final Logger LOG = LoggerFactory.getLogger( ExampleStreamProcessor.class );
     private Properties kafkaProps = new Properties();
+    private String topicFrom;
+    private String topicTo;
 
     // Constructor retrieves kafka-specific properties from system or application
-    // properties prefixed with "kafka." See test.properties in the test resources
-    // directory for an example
-    public ExampleStreamProcessor( Properties properties ) {
+    // properties prefixed with "kafka." See properties files in resources directory.
+    public ExampleStreamProcessor( String topicFromIn, String topicToIn, Properties properties ) {
         properties.forEach( ( key, val ) -> {
             if ( key.toString().startsWith( "kafka" ) ) {
                 kafkaProps.put( key.toString().substring( 6 ), val );
             }
-        } );
 
-        LOG.info( "FIXED PROPERTIES!:" );
-        kafkaProps.forEach( ( k, v ) -> {
-            LOG.info( k.toString() );
+            topicFrom = topicFromIn;
+            topicTo = topicToIn;
         } );
     }
 
-    // Serdes are objects that handle serializing and deserializing kafka messages
-    // one is needed to serialize/deserialize the key (simple string serde) and another
+    // Serdes are objects that handle serializing and deserializing kafka messages.
+    // One is needed to serialize/deserialize the key (simple string serde) and another
     // to serialize/deserialize the message itself (in this case the custom ExampleStreamMessageSerde
-    // defined in the messages package
+    // defined in the messages package)
     private Serde<String> stringSerdes = Serdes.String();
     private Serde<ExampleStreamMessage> streamMessageSerdes = new ExampleStreamMessageSerde();
 
@@ -49,15 +48,15 @@ public class ExampleStreamProcessor {
     // on the consumed message, and is where you plug in your application's logic.
     private Topology buildStream() {
         StreamsBuilder builder = new StreamsBuilder();
-        builder.stream( "stream.in", Consumed.with( stringSerdes, streamMessageSerdes ) ).mapValues( ( message ) -> {
+        builder.stream( topicFrom, Consumed.with( stringSerdes, streamMessageSerdes ) ).mapValues( ( message ) -> {
             message.getBreadcrumbs().add( "scala-kafka-streams" );
             return message;
-        } ).to( "stream.out", Produced.with( stringSerdes, streamMessageSerdes ) );
+        } ).to( topicTo, Produced.with( stringSerdes, streamMessageSerdes ) );
 
         return builder.build( kafkaProps );
     }
 
-    // Builds the stream, sets error handling, activates processing, and ensures that
+    // Build the stream, set error handling, activate processing, and ensure that
     // the stream will close when the application shuts down
     public void runStreams() {
         Topology topology = buildStream();
@@ -65,6 +64,7 @@ public class ExampleStreamProcessor {
 
         streams.setUncaughtExceptionHandler( ( Thread thread, Throwable throwable ) -> {
             LOG.error( throwable.getMessage() );
+            throwable.printStackTrace();
         } );
 
         streams.start();

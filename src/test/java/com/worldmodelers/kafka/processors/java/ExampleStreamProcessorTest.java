@@ -37,10 +37,6 @@ public class ExampleStreamProcessorTest extends ExampleStreamMessageJsonFormat {
     public ExampleStreamProcessorTest() throws IOException {
         InputStream propStream = getClass().getClassLoader().getResourceAsStream( "test.properties" );
         properties.load( propStream );
-        LOG.info("PROPERTIES!:");
-        properties.forEach( (k,v) -> {
-            LOG.info(k.toString());
-        } );
     }
 
     @Rule
@@ -48,9 +44,10 @@ public class ExampleStreamProcessorTest extends ExampleStreamMessageJsonFormat {
 
     @Test
     public void ExampleStreamProcessorShouldProcessAMessage() throws JsonProcessingException, InterruptedException {
-        ExampleStreamProcessor streamProcessor = new ExampleStreamProcessor( properties );
         String inputTopic = "stream.in";
         String outputTopic = "stream.out";
+
+        ExampleStreamProcessor streamProcessor = new ExampleStreamProcessor( inputTopic, outputTopic, properties );
 
         ExampleStreamMessage streamMessage = new ExampleStreamMessage( "id1", new ArrayList<String>() );
         String streamMessageJson = marshalMessage( streamMessage );
