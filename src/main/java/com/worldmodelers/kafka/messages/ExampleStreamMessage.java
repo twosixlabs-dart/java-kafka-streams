@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ExampleStreamMessage extends Serializable {
+public class ExampleStreamMessage implements Serializable {
     private static long serialVersionUID = 2L;
 
     @JsonProperty( "id" )
